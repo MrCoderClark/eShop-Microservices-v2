@@ -4,6 +4,9 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/error-handler"
+    },
+    {
       "path": "./tsconfig.app.json"
     }
   ]
