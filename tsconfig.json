@@ -2,5 +2,15 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./packages/error-handler"
+    },
+    {
+      "path": "./apps/auth-service"
+    },
+    {
+      "path": "./apps/gateway-api"
+    }
+  ]
 }

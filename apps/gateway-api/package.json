@@ -1,0 +1,28 @@
+{
+  "name": "@monorepo/gateway-api",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "targets": {
+      "serve": {
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "@monorepo/gateway-api:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "@monorepo/gateway-api:build:development"
+          },
+          "production": {
+            "buildTarget": "@monorepo/gateway-api:build:production"
+          }
+        }
+      }
+    }
+  }
+}
