@@ -11,6 +11,12 @@
     },
     {
       "path": "./apps/gateway-api"
+    },
+    {
+      "path": "./packages/libs/prisma"
+    },
+    {
+      "path": "./packages/libs/redis"
     }
   ]
 }
