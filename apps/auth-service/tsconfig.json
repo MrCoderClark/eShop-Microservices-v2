@@ -4,7 +4,13 @@
   "include": [],
   "references": [
     {
+      "path": "../../packages/libs/redis"
+    },
+    {
       "path": "../../packages/error-handler"
+    },
+    {
+      "path": "../../packages/libs/prisma"
     },
     {
       "path": "./tsconfig.app.json"

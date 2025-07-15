@@ -10,7 +10,13 @@
   "exclude": [],
   "references": [
     {
+      "path": "../../packages/libs/redis/tsconfig.lib.json"
+    },
+    {
       "path": "../../packages/error-handler/tsconfig.lib.json"
+    },
+    {
+      "path": "../../packages/libs/prisma/tsconfig.lib.json"
     }
   ]
 }

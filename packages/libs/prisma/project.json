@@ -1,0 +1,18 @@
+{
+  "name": "@monorepo/prisma",
+  "root": "packages/libs/prisma",
+  "sourceRoot": "packages/libs/prisma",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/libs/prisma",
+        "main": "packages/libs/prisma/index.ts",
+        "tsConfig": "packages/libs/prisma/tsconfig.lib.json"
+      }
+    }
+  },
+  "tags": []
+}

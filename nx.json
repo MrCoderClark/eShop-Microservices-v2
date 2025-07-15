@@ -2,16 +2,9 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "master",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
-    "production": [
-      "default"
-    ],
-    "sharedGlobals": [
-      "{workspaceRoot}/.github/workflows/ci.yml"
-    ]
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": ["default"],
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "nxCloudId": "687541d483084f5f1ce43901",
   "plugins": [
@@ -29,13 +22,19 @@
         }
       },
       "exclude": [
-        "packages/error-handler/*"
+        "packages/error-handler/*",
+        "packages/libs/*",
+        "packages/libs/prisma/*",
+        "packages/libs/redis/*"
       ]
     },
     {
       "plugin": "@nx/js/typescript",
       "include": [
-        "packages/error-handler/*"
+        "packages/error-handler/*",
+        "packages/libs/*",
+        "packages/libs/prisma/*",
+        "packages/libs/redis/*"
       ],
       "options": {
         "typecheck": {

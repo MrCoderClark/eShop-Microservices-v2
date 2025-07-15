@@ -1,0 +1,14 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "../../dist/packages/libs.prisma",
+    "tsBuildInfoFile": "../../dist/packages/libs/prisma/tsconfig.lib.tsbuildinfo",
+    "emitDeclarationOnly": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts", "index.ts"],
+  "references": []
+}
