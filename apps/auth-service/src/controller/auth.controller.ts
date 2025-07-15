@@ -6,6 +6,7 @@ import {
   trackOtpRequests,
   ValidationRegistrationData,
   verifyOtp,
+  verifyUserForgotPasswordOtp,
 } from "../utils/auth.helper";
 import prisma from "@monorepo/prisma";
 import {
@@ -148,4 +149,13 @@ export const userForgotPassword = async (
   next: NextFunction
 ) => {
   await handleForgotPassword(req, res, next, "user");
+};
+
+// Verify forgot password OTP
+export const verifyUserForgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  await verifyUserForgotPasswordOtp(req, res, next);
 };
