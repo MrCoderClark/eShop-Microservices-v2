@@ -1,1 +1,2 @@
-export * from "./lib/error-handler";
+export * from "./lib/index";
+export { errorHandler } from "./lib/error-handler";

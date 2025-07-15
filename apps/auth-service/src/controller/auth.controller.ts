@@ -6,9 +6,15 @@ import {
   ValidationRegistrationData,
   verifyOtp,
 } from "../utils/auth.helper";
-import prisma from "../../../../packages/libs/prisma";
-import { ValidationError } from "../../../../packages/error-handler/src/lib";
+import prisma from "@monorepo/prisma";
+import {
+  AuthError,
+  PasswordError,
+  ValidationError,
+} from "@monorepo/error-handler";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { setCookie } from "../utils/cookies/setCookie";
 
 // Register a new user
 export const userRegistration = async (
@@ -70,6 +76,65 @@ export const verifyUser = async (
     res
       .status(201)
       .json({ success: true, message: "User registered successfully!" });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// login user
+export const loginUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return next(new ValidationError(`Email and password are required!`));
+    }
+
+    const user = await prisma.users.findFirst({ where: { email } });
+
+    if (!user) {
+      return next(new AuthError("User account not found"));
+    }
+
+    // verify password
+    if (!user.password) {
+      return next(new PasswordError("Password is required"));
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return next(new AuthError("Invalid email or password"));
+    }
+
+    // Generate access and refresh token
+    const accessToken = jwt.sign(
+      { id: user.id, role: "user" },
+      process.env.ACCESS_TOKEN_SECRET as string,
+      {
+        expiresIn: "15m",
+      }
+    );
+
+    const refreshToken = jwt.sign(
+      { id: user.id, role: "user" },
+      process.env.REFRESH_TOKEN_SECRET as string,
+      {
+        expiresIn: "7d",
+      }
+    );
+
+    // store the refresh and access token in an httpOnly secure cookie
+    setCookie(res, "accessToken", accessToken);
+    setCookie(res, "refreshToken", refreshToken);
+
+    res.status(200).json({
+      message: "Logged in successfully",
+      user: { id: user.id, email: user.email, name: user.name },
+    });
   } catch (error) {
     return next(error);
   }

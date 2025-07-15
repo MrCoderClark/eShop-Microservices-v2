@@ -6,6 +6,12 @@
     "isolatedModules": true,
     "lib": ["es2022"],
     "module": "nodenext",
+    "baseUrl": ".",
+    "paths": {
+      "@libs/prisma": ["packages/libs/prisma/src/index.ts"],
+      "@monorepo/prisma": ["packages/libs/prisma/src/index.ts"]
+    },
+
     "moduleResolution": "nodenext",
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
